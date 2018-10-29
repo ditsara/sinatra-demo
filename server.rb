@@ -2,6 +2,7 @@
 
 require 'sinatra'
 
+# 1. Basic DSL
 get '/' do
   "Hello World!"
 end

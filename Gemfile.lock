@@ -10,6 +10,10 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
+    slim (4.0.1)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    temple (0.8.0)
     tilt (2.0.8)
 
 PLATFORMS
@@ -17,6 +21,7 @@ PLATFORMS
 
 DEPENDENCIES
   sinatra
+  slim
 
 BUNDLED WITH
    1.17.0
