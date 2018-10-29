@@ -3,6 +3,7 @@
 require 'sinatra'
 require 'json'
 require 'slim'
+require 'digest'
 
 # 1. Basic DSL
 get '/' do
@@ -49,6 +50,18 @@ anyone_call_counter = 0
 get '/sessions/anyone' do
   anyone_call_counter += 1
   "I've been called #{anyone_call_counter} times\n"
+end
+
+# 5. Caching
+# Sinatra doesn't handle caching itself, but it does provide a way to provide
+# HTTP cache headers to give your cache the information it needs. Clients (or
+# CDNs) can then perform caching, or you can setup a reverse proxy caching
+# layer.
+get '/caching' do
+  t = Time.now.utc
+  etag Digest::SHA1.hexdigest(t.to_s), :weak
+  cache_control :public, :must_revalidate, max_age: 5
+  "I'm cached! #{t}"
 end
 
 # configs
