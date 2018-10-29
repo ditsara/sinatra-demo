@@ -2,6 +2,7 @@
 
 require 'sinatra'
 require 'json'
+require 'slim'
 
 # 1. Basic DSL
 get '/' do
@@ -29,6 +30,10 @@ get '/patterns/splats/*.*' do |path, ext|
   "Request Path: #{path}\nExtension: #{ext}\n"
 end
 
+# 3. Templates
+get '/templates/slim' do
+  slim :'demo', locals: params
+end
 
 # configs
 

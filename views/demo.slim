@@ -1,0 +1,12 @@
+/ a basic SLIM template
+html
+  head
+  body
+    h1 Hello from Slim!
+    - if params.empty?
+      p You didn't send me any parameters
+    - else
+      p Here are the parameters you sent me:
+      ul
+        - params.each do |k, v|
+          li = "#{k}=#{v}"
