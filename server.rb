@@ -35,6 +35,22 @@ get '/templates/slim' do
   slim :'demo', locals: params
 end
 
+# 4. Session and State
+enable :sessions
+
+get '/sessions/me' do
+  session['count'] ||= 0
+  session['count'] += 1
+  "You've called me #{session['count']} times"
+end
+
+# This will keep a count of calls to this endpoint until the server is reset
+anyone_call_counter = 0
+get '/sessions/anyone' do
+  anyone_call_counter += 1
+  "I've been called #{anyone_call_counter} times\n"
+end
+
 # configs
 
 # TL;DR - next line is required only if you're running docker.
