@@ -11,13 +11,6 @@ services:
       - gems:/gems
     working_dir: /app
     command: ./server.rb
-    # depends_on:
-    #   - db
-  # db:
-  #   image: postgres:9.4
-  #   volumes:
-  #     - data:/var/lib/postgresql/data
 
 volumes:
   gems:
-  # data:
