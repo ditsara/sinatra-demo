@@ -6,6 +6,13 @@ get '/' do
   "Hello World!"
 end
 
+a = b = 1
+get '/fibo' do
+  y = a
+  a, b = b, a + b
+  y.to_s + "\n"
+end
+
 # configs
 
 # TL;DR - next line is required only if you're running docker.
