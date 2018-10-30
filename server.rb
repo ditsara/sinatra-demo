@@ -70,6 +70,23 @@ end
 # Thin is the best (easy) choice -- it's an event machine based server.
 set :server, %w[thin mongrel webrick]
 
+# 7. Middleware
+# This one is for demo purposes, but an example of a more interesting use case
+# would be to add authentication with Rack::Auth::Basic.
+class Shouter
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    status, headers, body = @app.call(env)
+    [status, headers, body.map(&:upcase)]
+  end
+end
+
+use Rack::Lint
+use Shouter
+
 # configs
 
 # TL;DR - next line is required only if you're running docker.
