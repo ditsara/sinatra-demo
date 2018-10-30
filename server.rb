@@ -64,6 +64,12 @@ get '/caching' do
   "I'm cached! #{t}"
 end
 
+# 6. Application Servers
+# Sinatra will use these servers in priority order. You'll need to make sure
+# one is installed via Gemfile (except Webrick, which is built into Ruby).
+# Thin is the best (easy) choice -- it's an event machine based server.
+set :server, %w[thin mongrel webrick]
+
 # configs
 
 # TL;DR - next line is required only if you're running docker.
